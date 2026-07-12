@@ -33,20 +33,113 @@ Project-main/
 
 ---
 
-## 🏗️ Architecture
+##🏗️ High-Level Architecture
 
-Client
+``` text
+                        +----------------------+
+                        |      Client          |
+                        | (Browser/Postman)    |
+                        +----------+-----------+
+                                   |
+                          HTTP Request
+                                   |
+                                   v
+                     +-------------------------+
+                     |      API Gateway        |
+                     |   Spring Cloud Gateway  |
+                     +-----------+-------------+
+                                 |
+                ---------------------------------------
+                |                  |                  |
+                v                  v                  v
+      +----------------+  +----------------+  +----------------+
+      | Auth Service   |  | Product Service|  | Order Service  |
+      | JWT Security   |  | Product CRUD   |  | Order CRUD     |
+      +-------+--------+  +-------+--------+  +-------+--------+
+              |                   |                   |
+              v                   v                   v
+        +-----------+       +-----------+       +-----------+
+        | Auth DB   |       | Product DB|       | Order DB  |
+        +-----------+       +-----------+       +-----------+
+
+                    +------------------------------+
+                    | Eureka Discovery Server      |
+                    +------------------------------+
+
+                    +------------------------------+
+                    | Spring Cloud Config Server   |
+                    +------------------------------+
+```
+
+## Components
+
+### Client
+
+-   Browser
+-   Postman
+-   Frontend application
+
+### API Gateway
+
+-   Single entry point
+-   Request routing
+-   Load balancing
+-   Security
+-   Communicates with Eureka
+
+### Auth Service
+
+-   User Registration
+-   Login
+-   JWT Authentication
+-   Token Generation
+
+### Product Service
+
+-   Product CRUD operations
+
+### Order Service
+
+-   Order CRUD operations
+
+### Eureka Discovery Server
+
+-   Service registration
+-   Service discovery
+
+### Config Server
+
+-   Centralized configuration
+
+## Request Flow
+
+``` 
+User
   |
+  v
 API Gateway
   |
-+-------------------------------+
-| Auth | Product | Order |
-+-------------------------------+
-        |
-   Eureka Discovery
-        |
-    Config Server
+  +--> Auth Service --> Auth DB
+  +--> Product Service --> Product DB
+  +--> Order Service --> Order DB
 
+All services register with Eureka and load configuration from Config Server.
+```
+
+## Technologies Used
+
+  Layer          Technology
+  -------------- -----------------------
+  Backend        Spring Boot
+  Architecture   Microservices
+  Gateway        Spring Cloud Gateway
+  Discovery      Netflix Eureka
+  Config         Spring Cloud Config
+  Security       Spring Security + JWT
+  ORM            Spring Data JPA
+  Build Tool     Maven
+  REST API       Spring Web
+  API Testing    Postman
 ---
 
 ## 🛠️ Technology Stack
