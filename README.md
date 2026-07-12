@@ -126,7 +126,7 @@ API Gateway
 All services register with Eureka and load configuration from Config Server.
 ```
 
-## Technologies Used
+## 🛠️ Technologies Used
 
   Layer          Technology
   -------------- -----------------------
@@ -140,20 +140,6 @@ All services register with Eureka and load configuration from Config Server.
   Build Tool     Maven
   REST API       Spring Web
   API Testing    Postman
----
-
-## 🛠️ Technology Stack
-
-- Java 17
-- Spring Boot
-- Spring Cloud
-- Spring Security
-- JWT
-- OpenFeign
-- Spring Data JPA
-- Hibernate
-- MySQL
-- Maven
 
 ---
 
