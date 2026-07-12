@@ -125,7 +125,6 @@ API Gateway
 
 All services register with Eureka and load configuration from Config Server.
 ```
-
 ## 🛠️ Technologies Used
 
   Layer          Technology
@@ -140,9 +139,7 @@ All services register with Eureka and load configuration from Config Server.
   Build Tool     Maven
   REST API       Spring Web
   API Testing    Postman
-
 ---
-
 ## 📌 Microservices
 
 ### Config Server
@@ -162,9 +159,7 @@ Manages product CRUD operations.
 
 ### Order Service
 Processes customer orders and communicates with Product Service.
-
 ---
-
 ## 🔐 Authentication Flow
 
 1. User logs in.
@@ -173,9 +168,7 @@ Processes customer orders and communicates with Product Service.
 4. Client sends JWT with every request.
 5. Gateway validates the token.
 6. Request reaches the required microservice.
-
 ---
-
 ## 📑 Sample API Endpoints
 
 ### Authentication
@@ -193,9 +186,7 @@ Processes customer orders and communicates with Product Service.
 - POST /orders
 - GET /orders
 - GET /orders/{id}
-
 ---
-
 ## ▶️ How to Run
 
 1. Start Config Server
