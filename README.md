@@ -127,18 +127,24 @@ All services register with Eureka and load configuration from Config Server.
 ```
 ## 🛠️ Technologies Used
 
-  Layer          Technology
-  -------------- -----------------------
-  Backend      -  Spring Boot
-  Architecture - Microservices
-  Gateway      - Spring Cloud Gateway
-  Discovery    -  Netflix Eureka
-  Config       -  Spring Cloud Config
-  Security     -  Spring Security + JWT
-  ORM          -  Spring Data JPA
-  Build Tool   -  Maven
-  REST API     -  Spring Web
-  API Testing  -  Postman
+| **Layer** | **Technology** |
+|------------|----------------|
+| **Backend** | Spring Boot |
+| **Programming Language** | Java |
+| **Architecture** | Microservices |
+| **API Gateway** | Spring Cloud Gateway |
+| **Service Discovery** | Netflix Eureka Discovery Server |
+| **Configuration Management** | Spring Cloud Config Server |
+| **Security** | Spring Security, JWT Authentication |
+| **Build Tool** | Maven |
+| **Database** | Separate Database for Each Microservice |
+| **ORM** | Spring Data JPA, Hibernate |
+| **REST API** | Spring Web |
+| **Dependency Management** | Maven |
+| **Version Control** | Git, GitHub |
+| **API Testing** | Postman |
+| **IDE** | IntelliJ IDEA / Eclipse / VS Code |
+| **Operating System** | Windows / Linux |
 ---
 ## 📌 Microservices
 
