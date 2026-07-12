@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: order-service
+  config.import: optional:configserver:http://localhost:8888
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/orderdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: order_user
+    password: Welcome@1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+server:
+  port: 8082
+
+product:
+  service:
+    base-url: http://localhost:8083
+
+order:
+  jwt:
+    secret: "0GCc0cRjAlV9K59XOppI61XU6w9p7WE29oa7N7fsmTc="
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 30   # heartbeat every 30s
+    lease-expiration-duration-in-seconds: 90 # wait 90s before eviction
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true

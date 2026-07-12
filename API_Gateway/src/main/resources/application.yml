@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+# Auth Service
+        - id: auth-service-route
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/auth/**
+# Product Service
+        - id: product-service-route
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/product/**, /api/v1/admin/product/**
+# Order Service
+        - id: order-service-route
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/orders/**, /api/v1/admin/orders/**					
+      discovery:
+        locator:
+          enabled: true 
+          lower-case-service-id: true
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+# expose health/info for monitoring
+management:
+   endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+   endpoint:
+        health:
+          show-details: always
+
+

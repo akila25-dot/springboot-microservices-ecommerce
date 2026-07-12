@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: product-service
+  config.import: optional:configserver:http://localhost:8888
+  datasource:
+    url: jdbc:mysql://localhost:3306/productdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: product_user
+    password: Welcome@1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+server:
+  port: 8083
+
+product:
+  jwt:
+    secret: "0GCc0cRjAlV9K59XOppI61XU6w9p7WE29oa7N7fsmTc="  # 🔑 must match Auth Service & Order Service secret
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 30   # heartbeat every 30s
+    lease-expiration-duration-in-seconds: 90 # wait 90s before eviction
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+
+
